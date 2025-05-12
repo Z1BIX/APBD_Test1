@@ -4,6 +4,6 @@ namespace Test1.Services;
 
 public interface IDatabaseService
 {
-    Task<AppointmentDTO> GetAppointmentByID(int id);
-    Task AddAppointment(AddAppointmentDTO appointment);
+    Task<AppointmentDTO> GetAppointmentByIDAsync(int id);
+    Task AddAppointmentAsync(AddAppointmentDTO appointment);
 }
