@@ -9,11 +9,11 @@ namespace Test1.Controllers;
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
-        private readonly IDatabaseService _dbService;
+        private readonly IDatabaseService _databaseService;
 
-        public AppointmentsController(IDatabaseService dbService)
+        public AppointmentsController(IDatabaseService databaseService)
         {
-            _dbService = dbService;
+            _databaseService = databaseService;
         }
 
         [HttpGet("{id}")]
@@ -21,8 +21,8 @@ namespace Test1.Controllers;
         {
             try
             {
-                var result = await _dbService.GetAppointmentByIDAsync(id);
-                return Ok(result);
+                var res = await _databaseService.GetAppointmentByIDAsync(id);
+                return Ok(res);
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace Test1.Controllers;
         {
             try
             {
-                await _dbService.AddAppointmentAsync(appointment);
+                await _databaseService.AddAppointmentAsync(appointment);
                 return CreatedAtAction(nameof(GetAppointmentDetails), new { appointment.appointment_id }, null);
             }
             catch (ValidationException e)
